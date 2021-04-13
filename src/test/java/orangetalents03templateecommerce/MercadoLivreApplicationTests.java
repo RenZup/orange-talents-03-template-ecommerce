@@ -1,4 +1,4 @@
-package orangetalents03templateecommerce.MercadoLivre;
+package orangetalents03templateecommerce;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
