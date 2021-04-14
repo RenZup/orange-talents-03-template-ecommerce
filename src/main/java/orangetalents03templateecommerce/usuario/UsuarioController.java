@@ -10,6 +10,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
@@ -35,8 +36,8 @@ public class UsuarioController {
     }
 
     @GetMapping
-    public ResponseEntity<List> listar(){
-        List<Usuario> lista = em.createQuery("from Usuario").getResultList();
+    public ResponseEntity<List<UsuarioResponseDto>> listar(){
+        List<Usuario> lista = em.createQuery("from Usuario",Usuario.class).getResultList();
         return ResponseEntity.ok().body(UsuarioResponseDto.toDtoList(lista));
     }
 

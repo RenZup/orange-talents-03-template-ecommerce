@@ -7,7 +7,7 @@ public class UsuarioResponseDto {
     private String email;
 
     public UsuarioResponseDto(Usuario usuario) {
-        this.email = usuario.getLogin();
+        this.email = usuario.getEmail();
     }
 
     public String getEmail() {

@@ -18,7 +18,7 @@ public class Usuario {
     @Column(nullable = false)
     private LocalDateTime instante =LocalDateTime.now();
     @Column(nullable = false)
-    private @Email @NotBlank String login;
+    private @Email @NotBlank String email;
     @Column(nullable = false)
     private @Size(min = 6) @NotBlank String senha;
 
@@ -36,7 +36,7 @@ public class Usuario {
         Assert.hasLength(senhaLimpa,"Senha Em Branco");
         Assert.isTrue(senhaLimpa.length() >= 6, "Senha precisa de no minimo 6 caracteres");
 
-        this.login = email;
+        this.email = email;
         this.senha = new BCryptPasswordEncoder().encode(senhaLimpa);
     }
 
@@ -49,8 +49,8 @@ public class Usuario {
         return instante;
     }
 
-    public String getLogin() {
-        return login;
+    public String getEmail() {
+        return email;
     }
 
     public String getSenha() {
