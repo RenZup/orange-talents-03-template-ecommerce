@@ -1,6 +1,8 @@
 package orangetalents03templateecommerce.usuario;
 
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
+import org.springframework.util.StringUtils;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -24,12 +26,20 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String login, String senha) {
-        Assert.notNull(login,"Email nulo");
-        Assert.notNull(senha,"Senha nula");
-        this.login = login;
-        this.senha = senha;
+    /**
+     *
+     * @param email Deve ser um email valido
+     * @param senhaLimpa Deve ser uma senha sem hash
+     */
+    public Usuario(@Email @NotBlank String email, @NotBlank @Size(min = 6) String senhaLimpa) {
+        Assert.hasLength(email,"Email em branco");
+        Assert.hasLength(senhaLimpa,"Senha Em Branco");
+        Assert.isTrue(senhaLimpa.length() >= 6, "Senha precisa de no minimo 6 caracteres");
+
+        this.login = email;
+        this.senha = new BCryptPasswordEncoder().encode(senhaLimpa);
     }
+
 
     public Long getId() {
         return id;

@@ -14,6 +14,7 @@ import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RestController
@@ -35,8 +36,8 @@ public class UsuarioController {
 
     @GetMapping
     public ResponseEntity<List> listar(){
-        Query query = em.createQuery("from Usuario");
-        return ResponseEntity.ok().body(query.getResultList());
+        List<Usuario> lista = em.createQuery("from Usuario").getResultList();
+        return ResponseEntity.ok().body(UsuarioResponseDto.toDtoList(lista));
     }
 
 }
