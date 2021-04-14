@@ -5,12 +5,12 @@ import javax.validation.Payload;
 import java.lang.annotation.*;
 
 @Documented
-@Constraint(validatedBy = {UniqueValueValidator.class})
+@Constraint(validatedBy = {ExistingIdValidator.class})
 @Target({ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface UniqueValue {
+public @interface ExistingId {
 
-    String message() default "Campo duplicado";
+    String message() default "Id inexistente";
 
     Class<?>[] groups() default {};
 
@@ -19,4 +19,5 @@ public @interface UniqueValue {
     String fieldName();
 
     Class<?> domainClass();
+
 }

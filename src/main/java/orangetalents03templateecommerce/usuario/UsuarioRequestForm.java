@@ -1,9 +1,7 @@
 package orangetalents03templateecommerce.usuario;
 
 
-import com.fasterxml.jackson.annotation.JsonAlias;
 import orangetalents03templateecommerce.compartilhado.UniqueValue;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
