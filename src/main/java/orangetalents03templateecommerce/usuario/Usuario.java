@@ -39,6 +39,15 @@ public class Usuario {
         this.senha = new BCryptPasswordEncoder().encode(senhaLimpa);
     }
 
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", instante=" + instante +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
+    }
 
     public Long getId() {
         return id;

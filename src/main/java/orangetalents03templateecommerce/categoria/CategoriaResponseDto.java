@@ -13,6 +13,7 @@ public class CategoriaResponseDto {
     public CategoriaResponseDto(Categoria categoria) {
     this.id = categoria.getId();
     this.nome = categoria.getNome();
+
     if(categoria.getCategoriaMae() != null)
         this.categoriaMae = new CategoriaResponseDto(categoria.getCategoriaMae());
     }
