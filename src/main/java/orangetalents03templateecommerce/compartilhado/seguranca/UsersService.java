@@ -32,14 +32,12 @@ public class UsersService implements UserDetailsService {
 		Assert.isTrue(objects.size() <= 1,
 				"[BUG] mais de um autenticável tem o mesmo username. "
 						+ username);
-		System.out.println(objects.get(0).toString());
 
 		if (objects.isEmpty()) {
 			throw new UsernameNotFoundException(
 					"Não foi possível encontrar usuário com email: "
 							+ username);
 		}
-		System.out.println(userDetailsMapper.map(objects.get(0)).getPassword());
 		return userDetailsMapper.map(objects.get(0));
 	}
 
