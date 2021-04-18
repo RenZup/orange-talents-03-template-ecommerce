@@ -4,6 +4,7 @@ import orangetalents03templateecommerce.categoria.Categoria;
 import orangetalents03templateecommerce.compartilhado.ExistingId;
 import orangetalents03templateecommerce.produto.caracteristica.Caracteristica;
 import orangetalents03templateecommerce.produto.caracteristica.CaracteristicaRequestForm;
+import orangetalents03templateecommerce.usuario.Usuario;
 import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.*;
@@ -28,6 +29,9 @@ public class ProdutoRequestForm {
     @ExistingId(domainClass = Categoria.class, fieldName = "id")
     @NotNull
     private Long idCategoria;
+    @ExistingId(domainClass = Usuario.class,fieldName = "id")
+    @NotNull
+    private Long idDono;
 
     @Override
     public String toString() {
@@ -65,7 +69,11 @@ public class ProdutoRequestForm {
         return idCategoria;
     }
 
-    public Produto toModel(List<Caracteristica> caracteristicas, Categoria categoria) {
-        return new Produto(nome,valor,quantidade,caracteristicas,descricao,categoria);
+    public Long getIdDono() {
+        return idDono;
+    }
+
+    public Produto toModel(List<Caracteristica> caracteristicas, Categoria categoria, Usuario dono) {
+        return new Produto(nome,valor,quantidade,caracteristicas,descricao,categoria,dono);
     }
 }

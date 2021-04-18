@@ -2,6 +2,7 @@ package orangetalents03templateecommerce.produto;
 
 import orangetalents03templateecommerce.categoria.Categoria;
 import orangetalents03templateecommerce.produto.caracteristica.Caracteristica;
+import orangetalents03templateecommerce.usuario.Usuario;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -36,6 +37,9 @@ public class Produto {
     @ManyToOne
     private @NotNull Categoria categoria;
 
+    @ManyToOne
+    private @NotNull Usuario dono;
+
     @Column(nullable = false)
     private LocalDateTime instante = LocalDateTime.now();
 
@@ -44,13 +48,14 @@ public class Produto {
 
     public Produto(@NotBlank String nome, @NotNull @Positive BigInteger valor,
                    @NotNull @PositiveOrZero int quantidade, @Size(min = 3) @NotNull List<Caracteristica> caracteristicas,
-                   @NotBlank @Length(max = 1000) String descricao, @NotNull Categoria categoria) {
+                   @NotBlank @Length(max = 1000) String descricao, @NotNull Categoria categoria, @NotNull Usuario dono) {
         this.nome = nome;
         this.valor = valor;
         this.quantidade = quantidade;
         this.caracteristicas = caracteristicas;
         this.descricao = descricao;
         this.categoria = categoria;
+        this.dono = dono;
     }
 
     @Override
@@ -63,6 +68,7 @@ public class Produto {
                 ", caracteristicas=" + caracteristicas +
                 ", descricao='" + descricao + '\'' +
                 ", categoria=" + categoria +
+                ", dono=" + dono +
                 ", instante=" + instante +
                 '}';
     }
@@ -97,5 +103,9 @@ public class Produto {
 
     public LocalDateTime getInstante() {
         return instante;
+    }
+
+    public Usuario getDono() {
+        return dono;
     }
 }

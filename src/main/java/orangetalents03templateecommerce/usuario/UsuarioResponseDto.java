@@ -17,4 +17,5 @@ public class UsuarioResponseDto {
     public static List<UsuarioResponseDto> toDtoList(List<Usuario> lista){
         return  lista.stream().map(UsuarioResponseDto::new).collect(Collectors.toList());
     }
+
 }
