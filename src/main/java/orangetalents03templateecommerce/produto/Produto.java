@@ -43,6 +43,10 @@ public class Produto {
     @Column(nullable = false)
     private LocalDateTime instante = LocalDateTime.now();
 
+    @ElementCollection
+    private List<String> urlImagens;
+
+
     public Produto() {
     }
 
@@ -107,5 +111,13 @@ public class Produto {
 
     public Usuario getDono() {
         return dono;
+    }
+
+    public List<String> getUrlImagens() {
+        return urlImagens;
+    }
+
+    public void adicionarImagens(List<String> imagens){
+        urlImagens.addAll(imagens);
     }
 }
